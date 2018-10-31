@@ -36,13 +36,13 @@ This README is currently written primarily as instructions to CIS 322 students. 
 
 ## Tasks
 
-The code under "brevets" can serve as a starting point. It illustrates a very simple Ajax transaction between the Flask server and javascript on the web page. At present the server does not calculate times. It just returns double the number of miles. Other things may be missing; add them as needed. As before, you should fork and then clone the git repository, make your changes, and turn in the URL of your repository.
+The code under "brevets" can serve as a starting point. It illustrates a very simple Ajax transaction between the Flask server and javascript on the web page. At present the server does not calculate times. It just returns double the number of miles. Other things may be missing; add them as needed. As before, you should fork and then clone the bitbucket repository, make your changes, and turn in the URL of your repository.
 
 You'll turn in your credentials.ini using which we will get the following:
 
 * The working application.
 
-* A README.md file that includes not only identifying information (your name, the path to your application on ix) but but also a revised, clear specification of the brevet controle time calculation rules.
+* A README.md file that includes not only identifying information (your name, email, etc.) but but also a revised, clear specification of the brevet controle time calculation rules.
 
 * An automated 'nose' test suite.
 
@@ -52,17 +52,23 @@ You'll turn in your credentials.ini using which we will get the following:
 
 * If your code works as expected: 100 points. This includes:
 	* AJAX in the frontend. That is, open and close times are automatically populated, 
-	* Logic in the backend (acp_times.py), and 
-	* Frontend to backend interaction (with correct requests/responses).
+	* Logic in the backend (acp_times.py), 
+	* Frontend to backend interaction (with correct requests/responses), 
+	* README is updated with a clear specification, and 
+	* All five tests pass.
 
-* If the AJAX logic is not working, 30 points will be docked off. 
+* If the AJAX logic is not working, 10 points will be docked off. 
 
-* If the acp_times.py file is wrong or is missing in the appropriate location, 30 points will be docked off.
+* If the README is not clear or missing, up to 15 points will be docked off. 
 
-* If none of the functionalities work, 40 points will be given assuming 
+* If the test cases fail, up to 15 points will be docked off. 
+
+* If the logic in the acp_times.py file is wrong or is missing in the appropriate location, 30 points will be docked off.
+
+* If none of the functionalities work, 30 points will be given assuming 
     * The credentials.ini is submitted with the correct URL of your repo, and
     * The Dockerfile builds without any errors
     
-* If the Dockerfile doesn't build or is missing, 20 points will be docked off.
+* If the Dockerfile doesn't build or is missing, 10 points will be docked off.
 
 * If credentials.ini is missing, 0 will be assigned.
