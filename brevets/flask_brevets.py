@@ -9,8 +9,8 @@ from flask import request
 import arrow  # Replacement for datetime, based on moment.js
 import acp_times  # Brevet time calculations
 import config
-
 import logging
+import os
 
 ###
 # Globals
@@ -23,19 +23,32 @@ app.secret_key = CONFIG.SECRET_KEY
 # Pages
 ###
 
-
 @app.route("/")
 @app.route("/index")
 def index():
     app.logger.debug("Main page entry")
     return flask.render_template('calc.html')
 
+@app.route("/<filepath>")
+def found(filepath):
+    if ((".." in filepath) or ("//" in filepath) or ("~" in filepath)):
+        return flask.render_template('403.html'), 403
+    if os.path.isfile("templates/" + filepath):
+        return flask.render_template(filepath), 200
+    else:
+        return flask.render_template('404.html'), 404
 
 @app.errorhandler(404)
 def page_not_found(error):
     app.logger.debug("Page not found")
     flask.session['linkback'] = flask.url_for("index")
     return flask.render_template('404.html'), 404
+
+@app.errorhandler(403)
+def forbidden_request(error):
+    app.logger.debug("Forbidden request")
+    flask.session['linkback'] = flask.url_for("index")
+    return flask.render_template('403.html'), 403
 
 
 ###############
