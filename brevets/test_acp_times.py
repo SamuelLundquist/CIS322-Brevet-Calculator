@@ -53,3 +53,25 @@ def test_close_time_300():
 	assert close_time(200, 300, time) == "2019-01-01 13:20:00+00:00"
 	assert close_time(275, 300, time) == "2019-01-01 18:20:00+00:00"
 	assert close_time(320, 300, time) == "2019-01-01 20:00:00+00:00"
+
+def test_open_time_400():
+	assert open_time(0, 400, time) == "2019-01-01 00:00:00+00:00"
+	assert open_time(60, 400, time) == "2019-01-01 01:46:00+00:00"
+	assert open_time(120, 400, time) == "2019-01-01 03:32:00+00:00"
+	assert open_time(175, 400, time) == "2019-01-01 05:09:00+00:00"
+	assert open_time(200, 400, time) == "2019-01-01 05:53:00+00:00"
+	assert open_time(275, 400, time) == "2019-01-01 08:14:00+00:00"
+	assert open_time(320, 400, time) == "2019-01-01 09:38:00+00:00"
+	assert open_time(375, 400, time) == "2019-01-01 11:21:00+00:00"
+	assert open_time(415, 400, time) == "2019-01-01 12:08:00+00:00"
+
+def test_close_time_400():
+	assert close_time(0, 400, time) == "2019-01-01 01:00:00+00:00"
+	assert close_time(60, 400, time) == "2019-01-01 04:00:00+00:00"
+	assert close_time(120, 400, time) == "2019-01-01 08:00:00+00:00"
+	assert close_time(175, 400, time) == "2019-01-01 11:40:00+00:00"
+	assert close_time(200, 400, time) == "2019-01-01 13:20:00+00:00"
+	assert close_time(275, 400, time) == "2019-01-01 18:20:00+00:00"
+	assert close_time(320, 400, time) == "2019-01-01 21:20:00+00:00"
+	assert close_time(375, 400, time) == "2019-01-02 01:00:00+00:00"
+	assert close_time(415, 400, time) == "2019-01-02 03:00:00+00:00"

@@ -11,6 +11,7 @@ import arrow
 dist=[600,400,200,0]
 maxSpeed = [28,30,32,34]
 minSpeed = [11.428,15,15,15]
+closeTime = {1000: 75, 600: 40, 400: 27, 300: 20, 200: 13.5}
 
 
 def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
@@ -85,8 +86,8 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
     control_dist_km = min(brevet_dist_km, control_dist_km)
     hours = 0.0
 
-    if(control_dist_km == brevet_dist_km == 200):
-      hours = 13.5
+    if(control_dist_km == brevet_dist_km):
+      hours = closeTime[brevet_dist_km]
 
     else:
       for i in range(4):
