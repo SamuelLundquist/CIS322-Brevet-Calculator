@@ -23,15 +23,19 @@ Each time a distance is filled in, the corresponding open and close times are fi
 ## Testing
 
 To run the server, change to the brevets directory and type:
+
 - $ sudo make start
 
 To exit the server type:
+
 - $ sudo make stop
 
 If you are running the server, type this to enter the docker container:
+
 - $ sudo docker exec -it yeet-default /bin/bash
 
 Once in the container, you can run nosetests like this ( -v for verbose mode ):
+
 - $ nosetests -v
 
 ## Authors
