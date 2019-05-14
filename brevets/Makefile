@@ -17,8 +17,8 @@ start: Dockerfile
 stop:
 	docker stop $(CONTAINER_NAME)-$(CONTAINER_INSTANCE)
 	docker rm $(CONTAINER_NAME)-$(CONTAINER_INSTANCE)
+
 prune:
-	# clean all that is not actively used
 	docker system prune -a
 
 default: build

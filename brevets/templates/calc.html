@@ -44,7 +44,7 @@
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
-    {% for message in messages %}
+    {% for message in messages %}3
       <li>{{ message }}</li>
     {% endfor %}
     </ul>
@@ -114,7 +114,7 @@
 
 <script type="text/javascript">
 
-  var SCRIPT_ROOT = {{ request.script_root|tojson|safe }} ;
+  var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
   var TIME_CALC_URL = SCRIPT_ROOT + "/_calc_times";
 
   // Pass calctimes a <td> element containing the data for a control.
@@ -124,10 +124,14 @@
   // stash them in hidden fields.) 
   function calc_times(control) {
     var km = control.find("input[name='km']").val();
+    var dt = $("#begin_date").val() + 'T' +  $("#begin_time").val();
+    var bv = $("#brevet_dist_km").val();
+    console.log(dt);
+    console.log(bv);
     var open_time_field = control.find("input[name='open']");
     var close_time_field = control.find("input[name='close']");
     
-    $.getJSON(TIME_CALC_URL, { km: km }, 
+    $.getJSON(TIME_CALC_URL, { km: km, dt: dt, bv: bv }, 
       // response handler
       function(data) {
          var times = data.result;

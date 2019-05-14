@@ -15,6 +15,12 @@ import arrow
 #  javadoc comments.
 #
 
+#Dictionaries used to calculate open and close times
+#defined here in case the rules change in the future
+dist=[600,400,200,0]
+maxSpeed = [28,30,32,34]
+minSpeed = [11.428,15,15,15]
+
 
 def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
     """
@@ -29,7 +35,31 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
        An ISO 8601 format date string indicating the control open time.
        This will be in the same time zone as the brevet start time.
     """
-    return arrow.now().isoformat()
+
+    if (brevet_dist_km * 1.2 < control_dist_km):
+      return ""
+
+    time = arrow.get(brevet_start_time)
+
+    if(control_dist_km == 0):
+      return time.format()
+
+    control_dist_km = min(brevet_dist_km, control_dist_km)
+    hours = 0.0
+
+    for i in range(4):
+      d = dist[i]
+      if(control_dist_km > d):
+        x = control_dist_km - d
+        hours += x/maxSpeed[i]
+        control_dist_km = control_dist_km - x
+
+    minutes = (hours*60) % 60
+    hours = int(hours)
+    minutes = round(minutes)
+    time = time.shift(hours=hours, minutes=minutes)
+
+    return time.format()
 
 
 def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
@@ -45,4 +75,33 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
        An ISO 8601 format date string indicating the control close time.
        This will be in the same time zone as the brevet start time.
     """
-    return arrow.now().isoformat()
+
+    if (brevet_dist_km * 1.2 < control_dist_km):
+      return ""
+
+    time = arrow.get(brevet_start_time)
+
+    if(control_dist_km == 0):
+      time = time.shift(hours=1)
+      return time.format()
+
+    control_dist_km = min(brevet_dist_km, control_dist_km)
+    hours = 0.0
+
+    if(control_dist_km == brevet_dist_km == 200):
+      hours = 13.5
+
+    else:
+      for i in range(4):
+        d = dist[i]
+        if(control_dist_km > d):
+          x = control_dist_km - d
+          hours += x/minSpeed[i]
+          control_dist_km = control_dist_km - x
+
+    minutes = (hours*60) % 60
+    hours = int(hours)
+    minutes = round(minutes)
+    time = time.shift(hours=hours, minutes=minutes)
+
+    return time.format()
