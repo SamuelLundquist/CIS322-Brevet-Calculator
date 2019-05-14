@@ -6,16 +6,7 @@ and https://rusa.org/pages/rulesForRiders
 """
 import arrow
 
-#  Note for CIS 322 Fall 2016:
-#  You MUST provide the following two functions
-#  with these signatures, so that I can write
-#  automated tests for grading.  You must keep
-#  these signatures even if you don't use all the
-#  same arguments.  Arguments are explained in the
-#  javadoc comments.
-#
-
-#Dictionaries used to calculate open and close times
+#Lists used to calculate open and close times
 #defined here in case the rules change in the future
 dist=[600,400,200,0]
 maxSpeed = [28,30,32,34]
@@ -39,7 +30,10 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
     if (brevet_dist_km * 1.2 < control_dist_km):
       return ""
 
-    time = arrow.get(brevet_start_time)
+    try:
+      time = arrow.get(brevet_start_time)
+    except:
+      return ""
 
     if(control_dist_km == 0):
       return time.format()
@@ -79,7 +73,10 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
     if (brevet_dist_km * 1.2 < control_dist_km):
       return ""
 
-    time = arrow.get(brevet_start_time)
+    try:
+      time = arrow.get(brevet_start_time)
+    except:
+      return ""
 
     if(control_dist_km == 0):
       time = time.shift(hours=1)
